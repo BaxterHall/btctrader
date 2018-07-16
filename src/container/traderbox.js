@@ -8,7 +8,7 @@ class TraderBox extends React.Component{
     render(){
     return(
         <div className="App">
-        <Box handleChange={this.props.loadPrice} lastprice={this.props.lastprice}></Box>
+        <Box lastprice={this.props.lastprice}></Box>
         </div>
     )
     }
