@@ -11,7 +11,7 @@ export function loadPrice(){
 export function changePrice(last_price){
     return{
         type: "CHANGE_PRICE",
-        last_price: last_price
+        lastprice: last_price
     }
 }
 

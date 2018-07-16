@@ -5,12 +5,12 @@ let defaultState={
 const mainReducer=(state=defaultState,action)=>{
     if(action.type==="CHANGE_PRICE"){
         return{
-            state,
+            ...state,
             last_price:action.last_price
         }
     } else{
         return{
-            state
+            ...state
         }
     }
 }
