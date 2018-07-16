@@ -16,7 +16,7 @@ class Box extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props.lastprice);
+        console.log( this.props.lastprice);
         this.setState({
             btcBank: 0,
             lastPrice: this.props.lastprice
