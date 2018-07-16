@@ -4,7 +4,7 @@ import {createStore, applyMiddleware} from 'redux';
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import reducers from "./reducers/index.js";
-import Boxcon from './container/traderbox.js';
+import TraderBox from './container/traderbox.js';
 import './index.css';
 
 let store = createStore(reducers, applyMiddleware(thunk))
@@ -13,8 +13,10 @@ let store = createStore(reducers, applyMiddleware(thunk))
 
 
 class App extends React.Component{
-    render(){
-        return(
+
+  render(){
+    return(
+
            <TraderBox></TraderBox>
         )
     }
