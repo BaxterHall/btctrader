@@ -2,6 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import * as actionCreators from "../actions/index.js"
 
+const mapStateToProps = (state) => {
+    return {
+        btcPrice: state
+    }
+}
+
 class TraderBox extends React.Component {
     constructor(props) {
         super(props);
@@ -9,36 +15,35 @@ class TraderBox extends React.Component {
         this.executeTrade = this.executeTrade.bind(this);
 
         this.state = {
-            usdBank: this.props.usdBank,
-            btcBank: this.props.btcBank,
-            inputValueBTC: this.props.inputValueBTC,
-            btcPrice: this.props.btcPrice,
-            tradeRate: this.props.tradeRate,
-            lastPrice: this.props.lastPrice,
+            usdBank: "",
+            btcBank: "",
+            inputValueBTC: "",
+            tradeRate: "",
+            lastPrice: "",
         };
         
     }
-
     componentDidMount() {
+
         this.props.loadPrice()
         this.setState({
             usdBank: 156.12,
             btcBank: 0,
-            btcPrice: this.props.btcPrice
+            lastPrice: this.props.btcPrice
         });
-        console.log(this.props.btcPrice);
+        console.log(this.state.lastPrice);
     }
     handleChange() {
        
-        console.log(this.state.btcPrice);
-        let btcQuote = (this.state.usdBank / this.state.btcPrice);
+        console.log(this.state.lastPrice);
+        let btcQuote = (Number(this.state.usdBank) / Number(this.state.lastPrice));
         this.setState({
             tradeRate: btcQuote,
         })
-        console.log(this.state.btcPrice);
+        console.log(Number(this.state.tradeRate));
     }
     executeTrade() {
-        let newBtc = (this.props.usdBank / this.state.btcPrice);
+        let newBtc = (this.props.usdBank / this.state.lastPrice);
         this.setState({
             btcBank: newBtc,
             usdBank: "",
@@ -75,7 +80,5 @@ class TraderBox extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return state
-}
+
 export default connect(mapStateToProps, actionCreators)(TraderBox);

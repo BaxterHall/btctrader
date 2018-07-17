@@ -1,5 +1,5 @@
 let defaultState={
-    btcPrice:""
+    btcPrice: ""
 }
 
 const mainReducer=(state=defaultState,action)=>{
