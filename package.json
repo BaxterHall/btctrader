@@ -19,6 +19,7 @@
     "start": "webpack-dev-server --config ./webpack-dev.config.js --open",
     "build": "webpack --config ./webpack-prod.config.js"
   },
+  "proxy": "http://localhost:3000",
   "author": "Baxter Hall",
   "license": "ISC",
   "devDependencies": {
