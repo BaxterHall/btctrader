@@ -23,23 +23,23 @@ class Box extends React.Component {
     //     this.props.loadPrice();
     // }
     componentDidMount() {
-
-        // console.log( this.state.lastprice);
+        this.props.loadPrice()
+        this.props.changePrice()
+        console.log( this.state.btcPrice);
         this.setState({
             btcBank: 0,
-            lastPrice: this.state.lastprice
+            lastPrice: this.state.btcPrice
         });
     }
     handleChange(){
-        this.props.loadPrice()
-        this.props.changePrice()
-        let btcQuote = (this.state.usdBank/lastPrice);
+        // this.props.loadPrice()   
+        let btcQuote = (this.state.usdBank/this.state.lastPrice);
         this.setState({
             tradeRate:btcQuote,
         })
     }
     executeTrade() {
-        let newBtc = (this.props.usdBank/lastPrice);
+        let newBtc = (this.props.usdBank/this.state.lastPrice);
         this.setState({
             btcBank: newBtc,
             usdBank: "",

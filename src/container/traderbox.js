@@ -19,28 +19,25 @@ class TraderBox extends React.Component {
         
 
     }
-    // componentWillMount(){
-    //     this.props.loadPrice();
-    // }
-    componentDidMount() {
 
-        // console.log( this.state.lastprice);
+    componentDidMount() {
+        this.props.loadPrice()
         this.setState({
             usdBank: 156.12,
             btcBank: 0,
-            lastPrice: this.state.lastprice
+            btcPrice: this.state.btcPrice
         });
     }
     handleChange() {
-        this.props.loadPrice()
-        this.props.changePrice()
-        let btcQuote = (this.state.usdBank / lastPrice);
+       
+        console.log(this.state.btcPrice);
+        let btcQuote = (this.state.usdBank / this.state.lastPrice);
         this.setState({
             tradeRate: btcQuote,
         })
     }
     executeTrade() {
-        let newBtc = (this.props.usdBank / lastPrice);
+        let newBtc = (this.props.usdBank / this.state.lastPrice);
         this.setState({
             btcBank: newBtc,
             usdBank: "",

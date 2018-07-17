@@ -5,7 +5,8 @@ export function loadPrice() {
     return (dispatch) => {
         return axios.get('http://localhost:3000/api')
             .then((response) => {
-                dispatch(changePrice(btcInfo.last_price));
+                console.log(response.data.last_price)
+                dispatch(changePrice(response.data.last_price));
             })
     }
 }
@@ -13,7 +14,7 @@ export function loadPrice() {
 export function changePrice(last_price) {
     return {
         type: "CHANGE_PRICE",
-        lastprice: last_price
+        last_price: last_price
 
     }
 }

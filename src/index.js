@@ -13,12 +13,6 @@ let store = createStore(reducers, applyMiddleware(thunk))
 
 class App extends React.Component{
 
-// componentDidMount() {
-// loadPrice()
-
-//         console.log( this.props.lastprice);
-//     }
-
   render(){
     return(
 
