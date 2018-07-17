@@ -35,12 +35,19 @@ module.exports = {
     publicPath: "/dist/",
     filename: "bundle.js"
   },
-  devServer: {
-    contentBase: path.join(__dirname, "public/"),
-    port: 3000,
-    publicPath: "http://localhost:3000/dist/",
-    hotOnly: true
-  },
+  // devServer: {
+  //   contentBase: path.join(__dirname, "public/"),
+  //   port: 3000,
+  //   publicPath: "http://localhost:8080",
+  //   hotOnly: true,
+  //   proxy: {'**': 'http://localhost:8080'},
+  //   historyApiFallback: true,
+  //   headers: {
+  //     "Access-Control-Allow-Origin": "*",
+  //     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+  //     "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+  //   }
+  // },
   plugins: [
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()

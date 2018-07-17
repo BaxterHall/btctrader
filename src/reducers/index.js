@@ -6,7 +6,7 @@ const mainReducer=(state=defaultState,action)=>{
     if(action.type==="CHANGE_PRICE"){
         return{
             ...state,
-            last_price:action.last_price
+            btcPrice:action.last_price
         }
     } else{
         return{

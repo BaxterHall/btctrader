@@ -1,35 +1,45 @@
-import React from "react";
+import React from "react"
+
+
+
 
 class Box extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+        this.executeTrade = this.executeTrade.bind(this);
         this.state = {
-            usdBank: 152.16,
-            btcBank: [],
-            inputValueBTC: [],
-            btcPrice: [],
-            tradeRate: [],
-            lastPrice: [],
-            
+            usdBank: this.props.usdBank,
+            btcBank: this.props.btcBank,
+            inputValueBTC: this.props.inputValueBTC,
+            btcPrice: this.props.btcPrice,
+            tradeRate: this.props.tradeRate,
+            lastPrice: this.props.lastPrice,        
         };
      
+     
     }
-
+    // componentWillMount(){
+    //     this.props.loadPrice();
+    // }
     componentDidMount() {
-        console.log( this.props.lastprice);
+
+        // console.log( this.state.lastprice);
         this.setState({
             btcBank: 0,
-            lastPrice: this.props.lastprice
+            lastPrice: this.state.lastprice
         });
     }
     handleChange(){
-        let btcQuote = this.state.usdBank * lastPrice;
+        this.props.loadPrice()
+        this.props.changePrice()
+        let btcQuote = (this.state.usdBank/lastPrice);
         this.setState({
             tradeRate:btcQuote,
         })
     }
     executeTrade() {
-        let newBtc = this.props.usdBank * lastPrice
+        let newBtc = (this.props.usdBank/lastPrice);
         this.setState({
             btcBank: newBtc,
             usdBank: "",
