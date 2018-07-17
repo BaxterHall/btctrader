@@ -5,4 +5,17 @@
 .trader{
     background-color:lightgrey;
     width: 300px;
+    margin:20px;
+}
+.traderInner{
+    padding:20px;
+    text-align:left;
+}
+#tradeBtn{
+    width:200px;
+    margin-top:10px;
+    padding:20px;
+    text-align:center;
+    background-color:blue;
+    color:#fff;
 }

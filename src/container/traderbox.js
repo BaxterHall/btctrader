@@ -2,83 +2,77 @@ import React from 'react';
 import { connect } from 'react-redux';
 import * as actionCreators from "../actions/index.js"
 
-const mapStateToProps = (state) => {
-    return {
-        btcPrice: state
-    }
-}
-
 class TraderBox extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
+        this.state = {
+            tradeRate: 0,
+            btcBank: 0,
+        }
         this.handleChange = this.handleChange.bind(this);
         this.executeTrade = this.executeTrade.bind(this);
-
-        this.state = {
-            usdBank: "",
-            btcBank: "",
-            inputValueBTC: "",
-            tradeRate: "",
-            lastPrice: "",
-        };
-        
     }
+
     componentDidMount() {
-
-        this.props.loadPrice()
+        this.props.loadPrice();
         this.setState({
-            usdBank: 156.12,
-            btcBank: 0,
-            lastPrice: this.props.btcPrice
-        });
-        console.log(this.state.lastPrice);
-    }
-    handleChange() {
-       
-        console.log(this.state.lastPrice);
-        let btcQuote = (Number(this.state.usdBank) / Number(this.state.lastPrice));
-        this.setState({
-            tradeRate: btcQuote,
+            usdBank: this.props.usdBank
         })
-        console.log(Number(this.state.tradeRate));
     }
+    handleChange(e) {
+        let amount = Number(e.target.value);
+        if (amount > this.props.usdBank) {
+            window.alert("You do not have enough funds")
+
+        } else {
+            this.props.changeBid(amount);
+
+        }
+    }
+
     executeTrade() {
-        let newBtc = (this.props.usdBank / this.state.lastPrice);
+        let newBtc = (this.props.usdBank / this.props.btcPrice);
+        let newUsdBank = (this.props.usdBank - this.props.usdBid);
+        console.log(this.props.usdBid)
         this.setState({
             btcBank: newBtc,
-            usdBank: "",
+            usdBank: newUsdBank
         })
     }
     render() {
         return (
 
             <div className="trader">
-                <p>Account Balance</p>
-                <p>USD:{this.state.usdBank}</p>
-                <p>BTC:{this.state.btcBank}</p>
-                <div className="usdTrader">
-                    <form>
-                        <label>
-                            Trade
-                                    </label><br />
-                        <input type="text" name="USD" value="USD" /><br />
-                        <input type="text" onChange={this.handleChange} placeholder="Enter your amount" />
-                    </form>
-                </div>
-                <div className="btcTrader">
-                    <form>
-                        <label>
-                            For
-                                    </label><br />
-                        <input type="text" value="BTC" /><br />
-                        <input type="text" value={this.state.tradeRate} placeholder="Display Quote" /><br />
-                        <input type="submit" value="Trade" />
-                    </form>
+                <div className="traderInner">
+                    <p>Account Balance</p>
+                    <p>USD: {this.state.usdBank}</p>
+                    <p>BTC: {this.state.btcBank}</p>
+                    <div className="usdTrader">
+                        <form>
+                            <label>
+                                Trade
+                        </label><br />
+                            <input type="text" name="USD" value="USD" /><br />
+                            <input type="text" onChange={this.handleChange} placeholder="Enter your amount" />
+                        </form>
+                    </div>
+                    <div className="btcTrader">
+                        <form onSubmit={e => e.preventDefault()}>
+                            <label>
+                                For
+                        </label><br />
+                            <input type="text" value="BTC" /><br />
+                            <input type="text" value={this.props.btcQuote} placeholder="Display Quote" /><br />
+                            <input id="tradeBtn" type="submit" value="Trade" onClick={this.executeTrade} />
+                        </form>
+                    </div>
                 </div>
             </div>
         )
     }
 }
 
-
+const mapStateToProps = (state) => {
+    return state
+}
 export default connect(mapStateToProps, actionCreators)(TraderBox);

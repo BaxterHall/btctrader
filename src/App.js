@@ -10,13 +10,9 @@ import './index.css';
 let store = createStore(reducers, applyMiddleware(thunk))
 
 class App extends React.Component {
-    constructor() {
-        super();
-    }
-
     render() {
         return (
-            <TraderBox></TraderBox>
+            <TraderBox />
         )
     }
 }

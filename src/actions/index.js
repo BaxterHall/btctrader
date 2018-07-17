@@ -11,11 +11,16 @@ export function loadPrice() {
     }
 }
 
+export function changeBid(amount){
+  return {
+    type: "CHANGE_BID",
+    value: amount
+  }
+}
+
 export function changePrice(last_price) {
     return {
         type: "CHANGE_PRICE",
         last_price: last_price
-
     }
 }
-
