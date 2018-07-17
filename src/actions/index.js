@@ -3,7 +3,7 @@ import axios from "axios";
 
 export function loadPrice() {
     return (dispatch) => {
-        return axios.get('http://api.bitfinex.com/v1/pubticker/btcusd')
+        return axios.get('http://localhost:3000/api')
             .then((response) => {
                 dispatch(changePrice(response.data.last_price));
             })
