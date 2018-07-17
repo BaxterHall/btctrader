@@ -21,7 +21,6 @@ class App extends React.Component {
             inputValueBTC: [],
             btcPrice: [],
             tradeRate: [],
-            lastPrice: [],
         };
     }
 
@@ -33,7 +32,6 @@ class App extends React.Component {
                 inputValueBTC={this.state.inputValueBTC}
                 btcPrice={this.state.btcPrice}
                 tradeRate={this.state.tradeRate}
-                lastPrice={this.state.lastPrice}
 
             ></TraderBox>
         )

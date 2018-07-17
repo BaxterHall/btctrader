@@ -16,7 +16,6 @@ class TraderBox extends React.Component {
             tradeRate: this.props.tradeRate,
         };
         
-
     }
 
     componentDidMount() {
@@ -24,7 +23,7 @@ class TraderBox extends React.Component {
         
         this.setState({
             usdBank: Number(156.12),
-            btcBank: Number(0),
+            btcBank: Number(0.00000000),
             btcPrice: this.state.btcPrice
         });
         console.log(this.state.btcPrice)
