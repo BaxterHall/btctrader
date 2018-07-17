@@ -1,63 +1,52 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import * as actionCreators from "../actions/index.js"
+import React from "react"
 
-class TraderBox extends React.Component {
+
+
+
+class Box extends React.Component {
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
         this.executeTrade = this.executeTrade.bind(this);
-
         this.state = {
             usdBank: this.props.usdBank,
             btcBank: this.props.btcBank,
             inputValueBTC: this.props.inputValueBTC,
             btcPrice: this.props.btcPrice,
             tradeRate: this.props.tradeRate,
-            lastPrice: this.props.lastPrice,
+            lastPrice: this.props.lastPrice,        
         };
-        
-
+     
+     
     }
-
+    // componentWillMount(){
+    //     this.props.loadPrice();
+    // }
     componentDidMount() {
         this.props.loadPrice()
+        this.props.changePrice()
+        console.log( this.state.btcPrice);
         this.setState({
-            usdBank: 156.12,
             btcBank: 0,
-            btcPrice: this.state.btcPrice
+            lastPrice: this.state.btcPrice
         });
     }
-    handleChange() {
-<<<<<<< HEAD
-        
-        // this.props.changePrice()
-     
-        let btcQuote = (this.state.usdBank / this.state.btcPrice);
+    handleChange(){
+        // this.props.loadPrice()   
+        let btcQuote = (this.state.usdBank/this.state.lastPrice);
         this.setState({
-            tradeRate: btcQuote,
-            btcPrice: this.state.btcPrice
-=======
-       
-        console.log(this.state.btcPrice);
-        let btcQuote = (this.state.usdBank / this.state.lastPrice);
-        this.setState({
-            tradeRate: btcQuote,
->>>>>>> parent of 95c3586... lost btcprice
+            tradeRate:btcQuote,
         })
-        console.log(this.state.btcPrice);
     }
     executeTrade() {
-<<<<<<< HEAD
-        let newBtc = (this.props.usdBank / this.state.btcPrice);
-=======
-        let newBtc = (this.props.usdBank / this.state.lastPrice);
->>>>>>> parent of 95c3586... lost btcprice
+        let newBtc = (this.props.usdBank/this.state.lastPrice);
         this.setState({
             btcBank: newBtc,
             usdBank: "",
         })
+
     }
+
     render() {
         return (
 
@@ -69,27 +58,25 @@ class TraderBox extends React.Component {
                     <form>
                         <label>
                             Trade
-                                    </label><br />
+                            </label><br />
                         <input type="text" name="USD" value="USD" /><br />
-                        <input type="text" onChange={this.handleChange} placeholder="Enter your amount" />
+                        <input type="text"  onChange={this.handleChange} placeholder="Enter your amount" />
                     </form>
                 </div>
                 <div className="btcTrader">
                     <form>
                         <label>
                             For
-                                    </label><br />
+                            </label><br />
                         <input type="text" value="BTC" /><br />
                         <input type="text" value={this.state.tradeRate} placeholder="Display Quote" /><br />
                         <input type="submit" value="Trade" />
                     </form>
                 </div>
             </div>
+
+
         )
     }
 }
-
-const mapStateToProps = (state) => {
-    return state
-}
-export default connect(mapStateToProps, actionCreators)(TraderBox);
+export default Box
