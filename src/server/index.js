@@ -27,7 +27,7 @@ app.get('/api', (req, res) => {
             if (error) {
                 console.log('uh oh')
             };
-            console.log(btcInfo);
+            console.log(btcInfo.last_price);
             // res.render('pages/artist', { artist: artist, albums: releases.releases });
         })
     });
