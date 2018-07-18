@@ -23,12 +23,12 @@ class TraderBox extends React.Component {
     }
     handleChange(e) {
         let amount = Number(e.target.value);
-
+        
         if (amount > this.props.usdBank) {
             this.setState({
                 disabled: true,
             })
-            window.alert("You do not have enough funds")
+         
             
         } else {
             this.setState({
@@ -41,11 +41,14 @@ class TraderBox extends React.Component {
 
     executeTrade() {
         let newBtc = (this.props.usdBank / this.props.btcPrice);
-        let newUsdBank = (this.props.usdBank - this.props.usdBid);
-        console.log(this.props.usdBid)
+        let newUsdBank = (this.props.usdBank - this.props.usdSold);
+        console.log(this.props.usdS)
+        console.log(this.props.usdBank)
+        
         this.setState({
             btcBank: newBtc.toFixed(8),
-            usdBank: newUsdBank.toFixed(2)
+            usdBank: newUsdBank.toFixed(2),
+            disabled: true,
         })
     }
     render() {
