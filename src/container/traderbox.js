@@ -7,7 +7,6 @@ class TraderBox extends React.Component {
         super();
         this.state = {
             usdBank: 156.12,
-            tradeRate: 0,
             btcBank: 0,
             disabled: true,
         }
@@ -28,9 +27,7 @@ class TraderBox extends React.Component {
         if (amount > this.state.usdBank) {
             this.setState({
                 disabled: true,
-            })
-         
-            
+            })           
         } else {
             this.setState({
                 disabled: false,
@@ -41,18 +38,15 @@ class TraderBox extends React.Component {
     }
 
     executeTrade() {
-        let newBtc = Number((this.state.btcBank + this.props.btcQuote)).toFixed(8);
-        let newUsdBank = Number((this.state.usdBank - this.props.usdSold)).toFixed(2);
-        console.log(this.props.usdSold)
-        console.log(this.state.usdBank)
-        console.log(newUsdBank)
+        let newBtcBalance = (this.state.btcBank + Number(this.props.btcQuote));    
+        let newUsdBalance = Number((this.state.usdBank - this.props.usdSold)).toFixed(2);
         
         this.setState({
-            btcBank:   newBtc,
-            usdBank:   newUsdBank,
+            btcBank:   newBtcBalance,
+            usdBank:   newUsdBalance,
             disabled: true,
         })
-        console.log(this.state.usdBank)
+
     }
     render() {
         return (
