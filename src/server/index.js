@@ -16,14 +16,12 @@ app.get('/api',cors(),(req, res) => {
     
     };
         request(options, function (error, data) {
-            
-
+        
             let btcInfo = JSON.parse(data.body)
 
             if (error) {
                 console.log('uh oh')
             };
-            console.log(btcInfo.last_price);
             res.json(btcInfo);
            
         })

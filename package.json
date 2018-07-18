@@ -1,7 +1,7 @@
 {
-  "name": "btc2",
+  "name": "btctrader",
   "version": "1.0.0",
-  "description": "",
+  "description": "USD to BTC trader App",
   "main": "index.js",
   "babel": {
     "presets": [
@@ -16,10 +16,11 @@
     ]
   },
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack-config.js --open && node ./server/index.js",
+    "server":  "node ./src/server/index.js",
+    "dev":    "webpack-dev-server --config ./webpack-config.js --open",
+    "start": "npm run server | npm run dev",
     "build": "webpack --config ./webpack.config.js"
   },
-  "proxy": "http://localhost:3000",
   "author": "Baxter Hall",
   "license": "ISC",
   "devDependencies": {

@@ -8,6 +8,7 @@ class TraderBox extends React.Component {
         this.state = {
             tradeRate: 0,
             btcBank: 0,
+            disabled: true,
         }
         this.handleChange = this.handleChange.bind(this);
         this.executeTrade = this.executeTrade.bind(this);
@@ -24,9 +25,15 @@ class TraderBox extends React.Component {
         let amount = Number(e.target.value);
 
         if (amount > this.props.usdBank) {
+            this.setState({
+                disabled: true,
+            })
             window.alert("You do not have enough funds")
-
+            
         } else {
+            this.setState({
+                disabled: false,
+            })
             this.props.changeBid(amount);
 
         }
@@ -67,7 +74,7 @@ class TraderBox extends React.Component {
                             </label><br />
                             <input className="currencyType" type="text" value="BTC"  readOnly/><br />
                             <input className="tradeBox" type="text" value={this.props.btcQuote} placeholder="Display Quote" /><br />
-                            <button id="tradeBtn" type="submit" value="Trade" disabled={!this.props.btcQuote}onClick={this.executeTrade}>Trade</button>
+                            <button id="tradeBtn" type="submit" value="Trade" disabled={this.state.disabled} onClick={this.executeTrade}>Trade</button>
                         </form>
                     </div>
                 </div>
