@@ -5,7 +5,7 @@ import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import reducers from "./reducers/index.js";
 import TraderBox from './container/traderbox.js';
-import './index.css';
+import './styles/appStyles.scss';
 
 let store = createStore(reducers, applyMiddleware(thunk))
 

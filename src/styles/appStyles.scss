@@ -1,0 +1,83 @@
+.trader{
+    display:flex;
+    justify-content: center;
+    flex-wrap:nowrap;
+    flex-direction:column;
+    background-color:#f7f7f7;
+    width: 300px;
+    font-family: 'Source Sans Pro', sans-serif;
+    .traderInner{  
+        margin: 0 auto;
+        label{
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size:14px;
+        }
+        .form{
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size:15px;
+        }
+        .currencyType{
+            width: 200px;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+        .tradeBox{
+            width: 200px;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+    }
+    .bankBalance{
+    
+        .balance{
+            font-size:14px;
+            margin-bottom:0px;
+        }
+        .usdTitle,
+        .btcTitle{
+            font-family: 'Source Sans Pro', sans-serif;
+            margin-bottom:0px;
+            font-weight:600;
+            font-size:16px;
+        }
+        .usdBalance,
+        .btcBalance{
+            font-weight:400;
+            font-size:14px;
+        }
+        .btcTitle{
+            margin-top:2px;
+        }   
+    }
+    
+    .usdTrader{
+        margin-top:10px;
+    
+    }
+    
+    #tradeBtn{
+        width:200px;
+        margin-top:10px;
+        padding:20px;
+        text-align:center;
+        background-color:#253AE4;
+        border:solid 1px #253AE4;
+        color:#fff;
+    }
+    #tradeBtn:hover,
+    #tradeBtn:focus,{
+        background-color: #0619B0;
+        border: 1px solid #0619B0;
+        cursor: pointer;
+    }
+    #tradeBtn:disabled {
+        background-color: #B0B0B0;
+        border: none;
+        cursor: default;
+    }
+    
+    
+}
+

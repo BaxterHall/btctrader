@@ -16,11 +16,13 @@ class TraderBox extends React.Component {
     componentDidMount() {
         this.props.loadPrice();
         this.setState({
-            usdBank: this.props.usdBank
+            usdBank: this.props.usdBank.toFixed(2)
         })
+
     }
     handleChange(e) {
         let amount = Number(e.target.value);
+
         if (amount > this.props.usdBank) {
             window.alert("You do not have enough funds")
 
@@ -35,8 +37,8 @@ class TraderBox extends React.Component {
         let newUsdBank = (this.props.usdBank - this.props.usdBid);
         console.log(this.props.usdBid)
         this.setState({
-            btcBank: newBtc,
-            usdBank: newUsdBank
+            btcBank: newBtc.toFixed(8),
+            usdBank: newUsdBank.toFixed(2)
         })
     }
     render() {
@@ -44,30 +46,32 @@ class TraderBox extends React.Component {
 
             <div className="trader">
                 <div className="traderInner">
-                    <p>Account Balance</p>
-                    <p>USD: {this.state.usdBank}</p>
-                    <p>BTC: {this.state.btcBank}</p>
+                    <div className="bankBalance">
+                        <p className="balance">Account Balance</p>
+                        <p className="usdTitle">USD: <span className="usdBalance">{this.state.usdBank}</span></p>
+                        <p className="btcTitle">BTC: <span className="btcBalance">{this.state.btcBank}</span></p>
+                    </div>
                     <div className="usdTrader">
                         <form>
                             <label>
                                 Trade
-                        </label><br />
-                            <input type="text" name="USD" value="USD" /><br />
-                            <input type="text" onChange={this.handleChange} placeholder="Enter your amount" />
+                            </label><br />
+                            <input className="currencyType" type="text" name="USD" value="USD" readOnly/><br />
+                            <input className="tradeBox" type="text" onChange={this.handleChange} placeholder="Enter your amount" />
                         </form>
                     </div>
                     <div className="btcTrader">
                         <form onSubmit={e => e.preventDefault()}>
                             <label>
                                 For
-                        </label><br />
-                            <input type="text" value="BTC" /><br />
-                            <input type="text" value={this.props.btcQuote} placeholder="Display Quote" /><br />
-                            <input id="tradeBtn" type="submit" value="Trade" onClick={this.executeTrade} />
+                            </label><br />
+                            <input className="currencyType" type="text" value="BTC"  readOnly/><br />
+                            <input className="tradeBox" type="text" value={this.props.btcQuote} placeholder="Display Quote" /><br />
+                            <button id="tradeBtn" type="submit" value="Trade" disabled={!this.props.btcQuote}onClick={this.executeTrade}>Trade</button>
                         </form>
                     </div>
                 </div>
-            </div>
+            </div >
         )
     }
 }
