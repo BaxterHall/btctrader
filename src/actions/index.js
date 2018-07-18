@@ -5,7 +5,7 @@ export function loadPrice() {
     return (dispatch) => {
         return axios.get('http://localhost:3000/api')
             .then((response) => {
-                console.log(response.data.last_price)
+                // console.log(response.data.last_price)
                 dispatch(changePrice(response.data.last_price));
             })
     }
