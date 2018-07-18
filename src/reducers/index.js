@@ -1,5 +1,5 @@
 let defaultState = {
-    usdBank: 156.12,
+    usdBank: 0,
     btcBank: 0,
     btcQuote: 0,
     btcPrice: '',
@@ -20,6 +20,7 @@ const mainReducer = (state = defaultState, action) => {
                 ...state,
                 usdSold: action.value,
                 btcQuote: action.value / state.btcPrice,
+
                
             }
     } else {
