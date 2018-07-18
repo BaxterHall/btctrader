@@ -16,8 +16,8 @@
     ]
   },
   "scripts": {
-    "server":  "node ./src/server/index.js",
-    "dev":    "webpack-dev-server --config ./webpack-config.js --open",
+    "server": "node ./src/server/index.js",
+    "dev": "webpack-dev-server --config ./webpack-config.js --open",
     "start": "npm run server | npm run dev",
     "build": "webpack --config ./webpack-config.js"
   },
