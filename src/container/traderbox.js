@@ -13,50 +13,44 @@ class TraderBox extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.executeTrade = this.executeTrade.bind(this);
     }
-
     componentDidMount() {
         this.props.loadPrice();
         this.setState({
-            usdBank: this.state.usdBank.toFixed(2)
+            usdBank: this.state.usdBank.toFixed(2),
+           
         })
-
     }
     handleChange(e) {
-        let amount = Number(e.target.value);
-        
+        let amount = Number(e.target.value);       
         if (amount > this.state.usdBank) {
             this.setState({
                 disabled: true,
-            })           
+            })      
+            // window.alert('Insufficient Funds');
         } else {
             this.setState({
                 disabled: false,
             })
             this.props.changeBid(amount);
-
         }
     }
-
     executeTrade() {
         let newBtcBalance = (this.state.btcBank + Number(this.props.btcQuote));    
-        let newUsdBalance = Number((this.state.usdBank - this.props.usdSold)).toFixed(2);
-        
+        let newUsdBalance = Number((this.state.usdBank - this.props.usdSold)).toFixed(2);       
         this.setState({
             btcBank:   newBtcBalance,
             usdBank:   newUsdBalance,
-            disabled: true,
-        })
-
+            disabled: true,   
+        })       
     }
     render() {
         return (
-
             <div className="trader">
                 <div className="traderInner">
                     <div className="bankBalance">
                         <p className="balance">Account Balance</p>
-                        <p className="usdTitle">USD: <span className="usdBalance">{this.state.usdBank}</span></p>
-                        <p className="btcTitle">BTC: <span className="btcBalance">{this.state.btcBank}</span></p>
+                        <p className="bankTitle">USD: <span className="usdBalance">{this.state.usdBank}</span></p>
+                        <p className="bankTitle">BTC: <span className="btcBalance">{this.state.btcBank}</span></p>
                     </div>
                     <div className="usdTrader">
                         <form>
@@ -64,7 +58,7 @@ class TraderBox extends React.Component {
                                 Trade
                             </label><br />
                             <input className="currencyType" type="text" name="USD" value="USD" readOnly/><br />
-                            <input className="tradeBox" type="text" onChange={this.handleChange} placeholder="Enter your amount" />
+                            <input className="tradeBox" type="text" onChange={this.handleChange} placeholder="Enter your amount"/>
                         </form>
                     </div>
                     <div className="btcTrader">
@@ -82,7 +76,6 @@ class TraderBox extends React.Component {
         )
     }
 }
-
 const mapStateToProps = (state) => {
     return state
 }

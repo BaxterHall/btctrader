@@ -1,26 +1,29 @@
 .trader{
     display:flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap:nowrap;
     flex-direction:column;
     background-color:#f7f7f7;
     width: 300px;
+    height:500px;
     font-family: 'Source Sans Pro', sans-serif;
     .traderInner{  
         margin: 0 auto;
+        font-size:12px;
         label{
             font-family: 'Source Sans Pro', sans-serif;
-            font-size:14px;
+            font-size:12px;
         }
         .form{
             font-family: 'Source Sans Pro', sans-serif;
-            font-size:15px;
+            font-size:12px;
         }
         .currencyType{
             width: 200px;
             padding: 12px 20px;
             margin: 8px 0;
             box-sizing: border-box;
+           
         }
         .tradeBox{
             width: 200px;
@@ -30,31 +33,25 @@
         }
     }
     .bankBalance{
-    
+        margin-bottom:25px;
         .balance{
-            font-size:14px;
-            margin-bottom:0px;
-        }
-        .usdTitle,
-        .btcTitle{
+            font-size:14px;         
+        }    
+        .bankTitle{
             font-family: 'Source Sans Pro', sans-serif;
+            margin-top:2px;
             margin-bottom:0px;
             font-weight:600;
-            font-size:16px;
+            font-size:13px;
         }
         .usdBalance,
         .btcBalance{
             font-weight:400;
-            font-size:14px;
+            font-size:12px;
         }
-        .btcTitle{
-            margin-top:2px;
-        }   
     }
-    
     .usdTrader{
-        margin-top:10px;
-    
+        margin-top:10px; 
     }
     
     #tradeBtn{

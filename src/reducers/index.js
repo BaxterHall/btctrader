@@ -3,6 +3,7 @@ let defaultState = {
     btcBank: 0,
     btcQuote: 0,
     btcPrice: '',
+
     tradeRate: 0,
     usdSold: 0,
 }
