@@ -1,28 +1,17 @@
 const express = require('express');
 const app = express();
-const cors = require('cors')
+const cors = require('cors');
+const axios = require('axios');
 
-
-const request = require('request');
-
-app.use(express.static(__dirname +'./../../')); //serves the index.html
+app.use(express.static(__dirname + './../../')); //serves the index.html
 app.listen(3000, () => console.log('btc trader listening on port 3000!'))
 
-
-app.get('/api',cors(),(req, res) => {
-
-    let options = {
-        url: 'http://api.bitfinex.com/v1/pubticker/btcusd',
-    
-    };
-        request(options, function (error, data) {
-        
-            let btcInfo = JSON.parse(data.body)
-
-            if (error) {
-                console.log('uh oh')
-            };
-            res.json(btcInfo);
-           
-        })
-    });
+app.get('/api', cors(), async (req, res) => {
+    try {
+        const response = await axios.get('https://api.bitfinex.com/v1/pubticker/btcusd');
+        res.json(response.data);
+    } catch (error) {
+        console.log('Error fetching BTC price:', error.message);
+        res.status(500).json({ error: 'Failed to fetch price' });
+    }
+});
